@@ -1,0 +1,27 @@
+import time
+import requests
+
+# Yahan apni doosri ID ka sahi JWT cookie aur URL dalna jo F12 Network tab se nikala tha
+URL = "https://api.hilokal.com/v1/tables" # Apna verified endpoint yahan dalein
+HEADERS = {
+    "Cookie": "jwt=YAHAN_APNI_DOOSRI_ID_KA_JWT_COOKIE_DALNA",
+    "Content-Type": "application/json"
+}
+DATA = {
+    "title": "My Auto Table 2",
+    "language": "English"
+}
+
+def create_table():
+    try:
+        response = requests.post(URL, headers=HEADERS, json=DATA)
+        print(f"[Account 2] Status: {response.status_code} | Response: {response.text}")
+    except Exception as e:
+        print(f"[Account 2] Error: {e}")
+
+if __name__ == "__main__":
+    print("[Account 2] Bot started for table creation...")
+    while True:
+        create_table()
+        # Har 10 minute mein table banayega
+        time.sleep(600)
